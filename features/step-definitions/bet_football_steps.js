@@ -32,7 +32,7 @@ Then(/^I should be logged into the site/, function () {
   var isAccountInfoVisible = browser.isVisible('[id="accountTabButton"]');
   expect(isAccountInfoVisible).to.eql(true);
 });
-Given(/^ I go for the football competions/, function () {
+Given(/^I go for the football competions/, function () {
   // we select the football competions and on that the premier league
   browser.waitForVisible('//ul[@id="desktop-sidebar-quick-links"]//a[@title="Football"]');
   browser.click('//ul[@id="desktop-sidebar-quick-links"]//a[@title="Football"]')
