@@ -1,6 +1,6 @@
-# Automtion tests for creating a bet in Gran parade
+# Automation tests for creating a bet in William Hill Site
 
-Mobile and deskptop tests for betting in grand parade for a football game. Tests deloveloped using cucumber and wdio
+Mobile and deskptop tests for betting in William Hill Site for a football game. Tests deloveloped using cucumber and wdio.js
 
 ### Prerequisites
 
@@ -8,9 +8,6 @@ Make sure you have npm installed.
 
 Install the package.json with npm install.
 
-
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
