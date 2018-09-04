@@ -23,13 +23,13 @@ expect( LoginPage.account.isVisible()).to.eql(true);
 });
 Given(/^I go for the football competions/, function () {
   // we select the football competions and on that the premier league
-  browser.waitForVisible('//ul[@id="desktop-sidebar-quick-links"]//a[@title="Football"]');
+  browser.waitForVisible('//li[@id="desktop-sidebar-quick-links"]//a[@title="Football"]');
   browser.click('//ul[@id="desktop-sidebar-quick-links"]//a[@title="Football"]')
   browser.waitForVisible('//li[@id="nav-football-competitions"]//a[@title="football-competitions"]')
   browser.click('//li[@id="nav-football-competitions"]//a[@title="football-competitions"]')
   browser.waitForVisible('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/OB_TY295/English-Premier-League/matches/OB_MGMB/Match-Betting"]')
   browser.click('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/OB_TY295/English-Premier-League/matches/OB_MGMB/Match-Betting"]')
-
+ browser.click('.cookie-disclaimer__button')
 });
 When(/^I select a game of english premier league and select home team to win/, function () {
   // Look for the first game on the premier and list the options to bet
