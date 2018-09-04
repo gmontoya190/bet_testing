@@ -25,9 +25,11 @@ Given(/^I go for the football competions/, function () {
     browser.waitForVisible('//div[@class="order-elements__carousel"]//a[@href="/betting/en-gb/football"]')
     browser.click('//div[@class="order-elements__carousel"]//a[@href="/betting/en-gb/football"]')
     browser.waitForVisible('//nav[@id="carousel"]');
-    browser.click('//*[@id="carousel"]/div/ul/li[5]/a');
-    browser.waitForVisible('//div[@id="football"]')
+    browser.click('//nav[@id="carousel"]//a[@href="/betting/en-gb/football/competitions"]');
     browser.click('.cookie-disclaimer__button')
+    browser.waitForExist('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/region/uk"]')
+    browser.moveToObject('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/region/uk"]')
+    browser.click('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/region/uk"]')
     browser.click('//div[@id="football"]//div[@data-test-id="competitions-menu"]//a[@href="/betting/en-gb/football/competitions/OB_TY295/English-Premier-League/matches/OB_MGMB/Match-Betting"]')
 });
 When(/^I select a game of english premier league and select home team to win/, function () {
@@ -47,14 +49,20 @@ When(/^I select a game of english premier league and select home team to win/, f
   if(betsList.value.length < 0){
       console.log("Looks like there are no local,draw and visitor bets available")
     } else {
-    browser.click('/html/body/div[10]/div/button');
     browser.waitForVisible('//div[@id="markets-container"]')
     var addButtons = browser.elements('//div[@class="btmarket__wrapper -expanded"]//div[@class="btmarket__actions"]//button')
-    addButtons.value[0].hold();
+    addButtons.value[0].touch();
     betHomeTeamSelected = true;
       
   }
   expect(betHomeTeamSelected).to.eql(true);   
 });
   Then(/^I bet some value for the home team/, function () {
+    browser.waitForVisible('//div[@id="toolbar"]//div[@id="betslip-btn-toolbar"]//span[@class="toolbar__badge toolbar__badge--fly-in"]')
+    browser.waitForEnabled('//div[@id="toolbar"]//div[@id="betslip-btn-toolbar"]//a')
+    browser.click('//div[@id="toolbar"]//div[@id="betslip-btn-toolbar"]//a');
+    browser.isVisible('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]')
+    browser.click('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]')
+    browser.click('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]/span/input')
+    browser.click('//*[@id="numberpad"]/div[4]/button[2]')
 });

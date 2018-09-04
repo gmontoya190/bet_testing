@@ -64,7 +64,7 @@ exports.config = {
         maxInstances: 1,
         browserName: 'chrome',
         appiumVersion : '1.7.2',
-        deviceName : 'ionic',
+        deviceName : 'testBet',
         platformVersion : '8.1.0',
         platformName : 'android'
         //app: '/Users/guille/Applications/Google Chrome.app'
@@ -142,7 +142,7 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'cucumber',
-    reporters: ['concise','json'],
+    reporters: ['spec','json'],
     reporterOptions: {
         outputDir: './'
       },

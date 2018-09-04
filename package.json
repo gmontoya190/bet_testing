@@ -12,6 +12,8 @@
     "cucumber": "^4.0.0",
     "wdio-appium-service": "^0.2.3",
     "wdio-chromedriver-service": "^0.1.2",
+    "eslint": "^4.19.1",
+    "wdio-spec-reporter": "^0.1.5",
     "wdio-concise-reporter": "^0.1.2",
     "wdio-cucumber-framework": "^2.2.6",
     "wdio-json-reporter": "^0.3.1",
