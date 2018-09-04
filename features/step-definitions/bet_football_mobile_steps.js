@@ -2,6 +2,7 @@ const expect = require('chai').expect;
 var {Given} = require('cucumber');
 var {When} = require('cucumber');
 var {Then} = require('cucumber');
+var LoginPage = require('../../pages/login.page');
 
 Given(/^I open up the application "([^"]*)"$/, function (url) {
   LoginPage.open(url);
@@ -26,6 +27,7 @@ Given(/^I go for the football competions/, function () {
     browser.waitForVisible('//nav[@id="carousel"]');
     browser.click('//*[@id="carousel"]/div/ul/li[5]/a');
     browser.waitForVisible('//div[@id="football"]')
+    browser.click('.cookie-disclaimer__button')
     browser.click('//div[@id="football"]//div[@data-test-id="competitions-menu"]//a[@href="/betting/en-gb/football/competitions/OB_TY295/English-Premier-League/matches/OB_MGMB/Match-Betting"]')
 });
 When(/^I select a game of english premier league and select home team to win/, function () {

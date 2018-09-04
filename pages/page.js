@@ -4,7 +4,6 @@ function Page () {
 
 Page.prototype.open = function (path) {
     browser.url(path)
-    browser.windowHandleFullscreen()
 }
 
 Page.prototype.clickElement = function (locator) {
