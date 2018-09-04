@@ -7,13 +7,15 @@
   "devDependencies": {
     "appium": "^1.7.1",
     "appium-doctor": "^1.4.3",
-    "wdio-appium-service": "^0.2.3",
-    "wdio-chromedriver-service": "^0.1.2",
-    "wdio-selenium-standalone-service": "0.0.9",
     "chai": "^4.1.2",
     "chromedriver": "^2.41.0",
     "cucumber": "^4.0.0",
+    "wdio-appium-service": "^0.2.3",
+    "wdio-chromedriver-service": "^0.1.2",
+    "wdio-concise-reporter": "^0.1.2",
     "wdio-cucumber-framework": "^2.2.6",
+    "wdio-json-reporter": "^0.3.1",
+    "wdio-selenium-standalone-service": "0.0.9",
     "webdriverio": "^4.11.0"
   },
   "scripts": {
