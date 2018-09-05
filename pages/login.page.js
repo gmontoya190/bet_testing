@@ -11,7 +11,8 @@ var LoginPage = Object.create(Page, {
     login:     { get: function () { return browser.element('//div[@class="account-tab"]//a[@id="accountTabButton"]'); } },
     account:    { get: function () { return browser.element('[id="accountTabButton"]'); } },
     submit:  { get: function () { return browser.element('[id="loginButton"]'); } },
-    accountTabSelector:  { get: function () { return '[id="accountTabButton"]' } },
+    depositAccount:  { get: function () { return '[id="depositHeaderButtonLink"]' } },
+    
 
 
     /**

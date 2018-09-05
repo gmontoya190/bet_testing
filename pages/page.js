@@ -14,4 +14,9 @@ Page.prototype.waitForElementVisible = function (locator) {
     browser.waitForVisible(locator)
     
 }
+Page.prototype.clickCookiesDisclaimer = function (locator) {
+    browser.click('.cookie-disclaimer__button')
+    
+}
+
 module.exports = new Page()
