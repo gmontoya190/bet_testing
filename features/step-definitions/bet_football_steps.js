@@ -57,7 +57,7 @@ When(/^I select a game of english premier league and select home team to win/, f
     }
     expect(betHomeTeamSelected).to.eql(true);   
 });
-Then(/^I bet some value for the home team/, function () {
+When(/^I bet some value for the home team/, function () {
   browser.waitForVisible('//div[@id="bets-container-singles"]')
   browser.click('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]/span//input')
   browser.setValue('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]/span//input','0.05')
@@ -65,4 +65,16 @@ Then(/^I bet some value for the home team/, function () {
   var isBetPlaced = browser.isVisible('//div[@id="receipt-notice-box"]')
   expect(isBetPlaced).to.eql(true); 
 });
-  
+When(/^I accept the odds and returns offered/, function () {
+  var betIsConfirmed = false;
+  browser.click('//*[@id="openbets-tab"]/a/span[2]')
+  browser.click('//button[@data-test-id="obb-cash-in-notification-button"]')
+  browser.waitForVisible('//div[@id="openbets-content"]')
+
+  var betsOpens = browser.elements('//div[@id="openbets-content"]//button[@data-test-id="obb-cash-in-button"]')
+  betsOpens.value[0].click();
+  browser.waitForVisible('//div[@class="cash-in-confirmation__button-container"]/button[@data-test-id="obb-cash-in-confirm-button"]')
+  browser.click('//div[@class="cash-in-confirmation__button-container"]/button[@data-test-id="obb-cash-in-confirm-button"]')
+  var betIsConfirmed = browser.isVisible('//*[@id="open-bets"]//span[@class="cashed-in-header__text"]')
+  expect(betIsConfirmed).to.eql(true); 
+});

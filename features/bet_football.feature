@@ -8,5 +8,5 @@ Feature: Make a bet in premier league game
 	Scenario: Making a bet home team to win
 		Given I go for the football competions
 		When I select a game of english premier league and select home team to win
-		Then I bet some value for the home team
-		
+		When I bet some value for the home team
+		When I accept the odds and returns offered
