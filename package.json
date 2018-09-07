@@ -1,8 +1,8 @@
 {
-  "name": "project_cucumber",
+  "name": "project_bet",
   "version": "1.0.0",
   "description": "App for automated tests",
-  "main": "cucumber.js",
+  "main": "wdio.config.js",
   "dependencies": {
     "appium-doctor": "^1.4.3",
     "chai": "^4.1.2",
@@ -11,8 +11,8 @@
     "appium": "^1.7.1"
   },
   "devDependencies": {
-    
     "eslint": "^4.19.1",
+    "prettier": "^1.14.2",
     "wdio-appium-service": "^0.2.3",
     "wdio-chromedriver-service": "^0.1.2",
     "wdio-concise-reporter": "^0.1.2",

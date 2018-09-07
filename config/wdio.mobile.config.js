@@ -63,7 +63,7 @@ exports.config = {
       //
       maxInstances: 1,
       browserName: 'chrome',
-      appiumVersion: '1.7.2',
+      appiumVersion: '1.7.1',
       deviceName: 'testBet',
       platformVersion: '8.1.0',
       platformName: 'android',
