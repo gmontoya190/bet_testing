@@ -3,6 +3,9 @@ var {Given} = require('cucumber');
 var {When} = require('cucumber');
 var {Then} = require('cucumber');
 var LoginPage = require('../../pages/login.page');
+var FootballCompettionsPage = require('../../pages/football_competitions.page');
+var PremierLeaguePage = require('../../pages/premier_league.page');
+var BetPlacePage = require('../../pages/bet_place.page');
 
 Given(/^I open up the application "([^"]*)"$/, function (url) {
   LoginPage.open(url);
@@ -12,77 +15,53 @@ Given(/^I open up the application "([^"]*)"$/, function (url) {
      LoginPage.login.click();
  });
  When(/^I fill user and password/, function () {
-     LoginPage.username.setValue('WHITA_opex7');
-     LoginPage.password.setValue('0p3x2017');
+     LoginPage.username.setValue(process.env.USER_GRAND_PARADE);
+     LoginPage.password.setValue(process.env.PASSWORD_GRAND_PARADE);
      LoginPage.submit.click();
  });
  Then(/^I should be logged into the site/, function () {
- LoginPage.waitForElementVisible(LoginPage.accountTabSelector);
+ LoginPage.waitForElementVisible(LoginPage.depositAccount);
  expect( LoginPage.account.isVisible()).to.eql(true);
  });
-Given(/^I go for the football competions/, function () {
-   // we select the football competions and on that the premier league
-    browser.waitForVisible('//div[@class="order-elements__carousel"]//a[@href="/betting/en-gb/football"]')
-    browser.click('//div[@class="order-elements__carousel"]//a[@href="/betting/en-gb/football"]')
-    browser.waitForVisible('//nav[@id="carousel"]//a[@href="/betting/en-gb/football/competitions"]');
-    browser.click('//nav[@id="carousel"]//a[@href="/betting/en-gb/football/competitions"]');
-    browser.click('.cookie-disclaimer__button')
-    browser.waitForExist('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/region/uk"]')
-    browser.moveToObject('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/region/uk"]')
-    browser.click('//span[@class="analytics"]//a[@href="/betting/en-gb/football/competitions/region/uk"]')
-    browser.click('//div[@id="football"]//div[@data-test-id="competitions-menu"]//a[@href="/betting/en-gb/football/competitions/OB_TY295/English-Premier-League/matches/OB_MGMB/Match-Betting"]')
+Given(/^I go to the football competitions/, function () {
+   // we select the football competions and then the premier league competition
+    FootballCompettionsPage.waitForElementVisible(FootballCompettionsPage.carouselFootballSectionSelector);
+    FootballCompettionsPage.carouselFootballSection.click();
+    FootballCompettionsPage.waitForElementVisible(FootballCompettionsPage.carouselCompetiSubSectionSelec);
+    FootballCompettionsPage.carouselCompetiSubSection.click();
+    FootballCompettionsPage.clickCookiesDisclaimer();
+    FootballCompettionsPage.waitForElementVisible(FootballCompettionsPage.ukCompetitionsSelector);
+    FootballCompettionsPage.ukCompetitions.moveToObject();
+    FootballCompettionsPage.ukCompetitions.click();
+    FootballCompettionsPage.premierLeagueGamesMobile.click();
 });
 When(/^I select a game of english premier league and select home team to win/, function () {
-    // Look for the first game on the premier and list the options to bet
-  var betHomeTeamSelected = false;
-  browser.waitForVisible('//div[@data-test-id="events-group"]')
-
-  var listGames = browser.elements('//div[@data-test-id="events-group"]//div[@class="sp-o-market--three-cols"]//article')
-  if (listGames.value.length >0) {
-      listGames.value[0].click();
-  }
-  else {
-      console.log("there are no events for the english premier league at this point")
-  }
-  browser.waitForVisible('//div[@id="markets-container"]')
-  var betsList = browser.elements('//div[@id="markets-container"]//div[@class="btmarket__selection"]')
-  if(betsList.value.length < 0){
-      console.log("Looks like there are no local,draw and visitor bets available")
-    } else {
-    browser.waitForVisible('//div[@id="markets-container"]')
-    var addButtons = browser.elements('//div[@class="btmarket__wrapper -expanded"]//div[@class="btmarket__actions"]//button')
-    addButtons.value[0].touch();
-    betHomeTeamSelected = true;
-      
-  }
-  expect(betHomeTeamSelected).to.eql(true);   
+    // Look for the first game on the premier and select home team to win
+    // in 90 minutes option
+    PremierLeaguePage.waitForElementVisible(PremierLeaguePage.eventsGroupSectionSelector);
+    var listGames =PremierLeaguePage.listGames;
+    expect(PremierLeaguePage.isCurrentFirstGameClicked(listGames)).to.eql(true);
+    PremierLeaguePage.waitForElementVisible(PremierLeaguePage.betsContainerSelector);
+    expect(PremierLeaguePage.IsSelectedHomeToWinMobile90Min()).to.eql(true);
 });
-  When(/^I bet some value for the home team/, function () {
-    browser.waitForVisible('//div[@id="toolbar"]//div[@id="betslip-btn-toolbar"]//span[@class="toolbar__badge toolbar__badge--fly-in"]')
-    browser.waitForEnabled('//div[@id="toolbar"]//div[@id="betslip-btn-toolbar"]//a')
-    browser.click('//div[@id="toolbar"]//div[@id="betslip-btn-toolbar"]//a');
-    browser.isVisible('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]')
-    browser.click('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]')
-    browser.click('//div[@class="betslip-selection__stake-container betslip-selection__stake-container--single"]/span/input')
-    browser.touch('//*[@id="numberpad"]/div[4]/button[2]')
-    browser.touch('//*[@id="numberpad"]/div[4]/button[1]')
-    browser.touch('//*[@id="numberpad"]/div[4]/button[2]')
-    browser.touch('//*[@id="numberpad"]/div[2]/button[2]')
-    browser.touch('//*[@id="numberpad"]/div[6]/button')
-    var isBetPlaced = browser.isVisible('//div[@id="receipt-notice-box"]')
-    expect(isBetPlaced).to.eql(true); 
+When(/^I bet some value for the home team/, function () {
+    // Place the value set up for the test in the env variable and confirm the bet.
+    BetPlacePage.waitForElementVisible(BetPlacePage.betSlipFlyerFooterSelecMob);
+    BetPlacePage.waitForElementEnabled(BetPlacePage.betSlipFooterSelecMob);
+    BetPlacePage.betSlipFooterMob.click();
+    BetPlacePage.waitForElementVisible(BetPlacePage.betContainerSelector);
+    BetPlacePage.betSlipInput.click();
+    expect(BetPlacePage.placeValueBetMobile(process.env.VALUE_BET_GRAND_PARADE)).to.eql(true); 
+    BetPlacePage.placeBetKeyboardMob.touch();
+    expect(BetPlacePage.noticeBoxBetPlaced.isVisible()).to.eql(true);
     
 });
 When(/^I accept the odds and returns offered/, function () {
-  var betIsConfirmed = false;
-  browser.click('//*[@id="openbets-tab"]/a/span[2]')
-  browser.click('//button[@data-test-id="obb-cash-in-notification-button"]')
-  browser.waitForVisible('//div[@id="openbets-content"]')
-
-  var betsOpens = browser.elements('//div[@id="openbets-content"]//button[@data-test-id="obb-cash-in-button"]')
-  betsOpens.value[0].click();
-  browser.waitForVisible('//div[@class="cash-in-confirmation__button-container"]/button[@data-test-id="obb-cash-in-confirm-button"]')
-  browser.click('//div[@class="cash-in-confirmation__button-container"]/button[@data-test-id="obb-cash-in-confirm-button"]')
-  var betIsConfirmed = browser.isVisible('//*[@id="open-bets"]//span[@class="cashed-in-header__text"]')
-  expect(betIsConfirmed).to.eql(true); 
+    BetPlacePage.openBetsContainer.click();
+    BetPlacePage.notificationCashIn.click();
+    BetPlacePage.waitForElementVisible(BetPlacePage.openBetsContent);
+    BetPlacePage.cashInJustOpenBet();
+    BetPlacePage.waitForElementVisible(BetPlacePage.cashInConfirmationContainer);
+    BetPlacePage.confirmCashIn.click();
+    expect(BetPlacePage.hearderBetCashIn.isVisible()).to.eql(true);  
 });

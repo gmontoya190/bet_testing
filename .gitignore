@@ -16,3 +16,6 @@ Thumbs.db
 ############
 *.node_modules
 *errorShots
+node_modules/
+junit_report/
+appium.log/
