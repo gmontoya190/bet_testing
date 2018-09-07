@@ -17,7 +17,7 @@ VALUE_BET_GRAND_PARADE = "Any value you want to bet" Example: 0.05
 
 ## Running the tests
 
-#Mobile 
+# Mobile 
 To run the mobile tests execute on the base folder :
 
 npm run mobile
@@ -31,7 +31,7 @@ deviceName: 'testBet',
 platformVersion: '8.1.0',
 platformName: 'android',
 
-#Desktop
+# Desktop
 To run the desktop test execute on the base folder:
 
 npm run desktop
