@@ -1,4 +1,7 @@
 Feature: Make a bet in premier league game
+	As a WH Customer 
+	I want the ability to place a bet on a English Premier League event
+
 	Scenario: Login into web site
   		Given I open up the application "http://sports.williamhill.com/betting/en-gb"
 		When I click on login button

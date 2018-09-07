@@ -1,6 +1,6 @@
 # Automation tests for creating a bet in William Hill Site
 
-Mobile and deskptop tests for betting in William Hill Site for a football game. Tests delveloped using cucumber and wdio.js
+Mobile and deskptop tests for betting for a premier league game in William Hill Site for a football game. Tests delveloped using cucumber and wdio.js
 
 ### Prerequisites
 
