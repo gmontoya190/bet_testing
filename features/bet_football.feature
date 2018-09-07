@@ -12,4 +12,4 @@ Feature: Make a bet in premier league game
 		Given I go to the football competitions
 		When I select a game of english premier league and select home team to win
 		When I bet some value for the home team
-		When I accept the odds and returns offered
+		Then I accept the odds and returns offered

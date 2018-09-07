@@ -52,7 +52,7 @@ When(/^I bet some value for the home team/, function () {
   BetPlacePage.placeBet.click();
   expect(BetPlacePage.noticeBoxBetPlaced.isVisible()).to.eql(true);
 });
-When(/^I accept the odds and returns offered/, function () {
+Then(/^I accept the odds and returns offered/, function () {
   BetPlacePage.openBetsContainer.click();
   BetPlacePage.notificationCashIn.click();
   BetPlacePage.waitForElementVisible(BetPlacePage.openBetsContent);
